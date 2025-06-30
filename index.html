@@ -3,131 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nil Postius Echeverri - AI & Robotics Strategist</title>
+    <title>Nil Postius Echeverri - AI & Robotics Solutions Expert</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav" id="nav">
+    <nav class="navbar">
         <div class="container">
-            <div class="nav-content">
-                <div class="nav-brand">Nil Postius</div>
-                <div class="nav-menu" id="nav-menu">
-                    <a href="#hero" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#experience" class="nav-link">Experience</a>
-                    <a href="#skills" class="nav-link">Skills</a>
-                    <a href="#testimonials" class="nav-link">Testimonials</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+            <div class="navbar-content">
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <span class="divider">|</span>
+                    <button class="lang-btn" data-lang="es">ES</button>
                 </div>
-                <button class="nav-toggle" id="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <div class="nav-menu">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="#home" data-en="Home" data-es="Inicio">Home</a></li>
+                        <li><a href="#about" data-en="About" data-es="Acerca de">About</a></li>
+                        <li><a href="#experience" data-en="Experience" data-es="Experiencia">Experience</a></li>
+                        <li><a href="#skills" data-en="Skills" data-es="Habilidades">Skills</a></li>
+                        <li><a href="#testimonials" data-en="Testimonials" data-es="Testimonios">Testimonials</a></li>
+                        <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-background"></div>
+    <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-profile">
-                    <div class="profile-image">
-                        <div class="profile-placeholder">NP</div>
-                    </div>
-                </div>
-                <h1 class="hero-name">Nil Postius Echeverri</h1>
-                <h2 class="hero-headline">AI & Robotics Strategist | Transforming Industrial Operations Through Innovation</h2>
-                <p class="hero-tagline">Bridging cultures and technologies to build the future of smart manufacturing</p>
-                <div class="hero-cta">
-                    <button class="btn btn--primary" data-scroll="experience">View My Work</button>
-                    <button class="btn btn--outline" data-scroll="contact">Get In Touch</button>
+                <h1 class="hero-title">
+                    <span data-en="Nil Postius Echeverri" data-es="Nil Postius Echeverri">Nil Postius Echeverri</span>
+                </h1>
+                <h2 class="hero-subtitle">
+                    <span data-en="AI & Robotics Solutions Expert" data-es="Experto en Soluciones de IA y Robótica">AI & Robotics Solutions Expert</span>
+                </h2>
+                <p class="hero-description">
+                    <span data-en="Transforming industrial operations through innovative AI and robotics solutions. Currently driving digital transformation at Yokogawa in Tokyo, Japan." data-es="Transformando operaciones industriales a través de soluciones innovadoras de IA y robótica. Actualmente impulsando la transformación digital en Yokogawa en Tokio, Japón.">Transforming industrial operations through innovative AI and robotics solutions. Currently driving digital transformation at Yokogawa in Tokyo, Japan.</span>
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn--primary">
+                        <span data-en="Get In Touch" data-es="Ponte en Contacto">Get In Touch</span>
+                    </a>
+                    <a href="#about" class="btn btn--outline">
+                        <span data-en="Learn More" data-es="Saber Más">Learn More</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="section about" id="about">
+    <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title">
+                <span data-en="About Me" data-es="Acerca de Mí">About Me</span>
+            </h2>
             <div class="about-content">
-                <p>Born and raised in the beautiful Principality of Andorra nestled in the Pyrenees, I've always been drawn to bridging different worlds – whether it's the cultural divide between mountain traditions and modern innovation, or the technical gap between human needs and technological solutions.</p>
-                
-                <p>My journey began with Industrial Engineering studies at IQS School of Engineering in Barcelona, where I discovered my passion for solving complex problems through systematic thinking and technological innovation. But it was the pursuit of my MBA at GLOBIS University in Tokyo, under the prestigious Monbukagakusho scholarship, that truly opened my eyes to the transformative power of cross-cultural collaboration.</p>
-                
-                <p>I believe that the future of industry lies not just in advanced technology, but in how we humanize that technology. At Yokogawa Electric Corporation, I'm currently leading the charge in digital transformation strategies that put people at the center of smart manufacturing. My work focuses on developing robotics and drone solutions that don't replace human intelligence, but amplify it.</p>
-                
-                <p>As a patent holder for autonomous patrol systems, I'm passionate about creating technologies that enable mission planning and execution while maintaining the human element that drives true innovation. My multicultural perspective – speaking Catalan, Spanish, English, and Japanese – allows me to see challenges from multiple angles and build bridges between Eastern and Western business cultures.</p>
-                
-                <p>My mission is simple: to revolutionize industrial operations through AI, Digital Twin, and IoT technologies that enhance both safety and human potential, creating a future where technology serves humanity's greatest aspirations.</p>
+                <div class="about-text">
+                    <p data-en="I am a passionate engineer and business leader specializing in AI and robotics solutions delivery. Originally from Andorra, I have built my career bridging the gap between cutting-edge technology and practical business applications." data-es="Soy un ingeniero apasionado y líder empresarial especializado en la entrega de soluciones de IA y robótica. Originario de Andorra, he construido mi carrera conectando la tecnología de vanguardia con aplicaciones empresariales prácticas.">I am a passionate engineer and business leader specializing in AI and robotics solutions delivery. Originally from Andorra, I have built my career bridging the gap between cutting-edge technology and practical business applications.</p>
+                    
+                    <p data-en="Currently based in Tokyo, Japan, I work at Yokogawa where I manage multi-million dollar AI projects and lead cross-functional teams in developing innovative control models. My multicultural background and diverse experience enable me to tackle complex challenges from unique perspectives." data-es="Actualmente con base en Tokio, Japón, trabajo en Yokogawa donde gestiono proyectos de IA de varios millones de dólares y lidero equipos multifuncionales en el desarrollo de modelos de control innovadores. Mi experiencia multicultural y diversa me permite abordar desafíos complejos desde perspectivas únicas.">Currently based in Tokyo, Japan, I work at Yokogawa where I manage multi-million dollar AI projects and lead cross-functional teams in developing innovative control models. My multicultural background and diverse experience enable me to tackle complex challenges from unique perspectives.</p>
+                    
+                    <p data-en="As a patent holder and MBA graduate from GLOBIS University, I combine technical expertise with strategic business acumen. My journey has been marked by continuous learning, innovation, and a commitment to driving digital transformation in industrial settings." data-es="Como titular de patentes y graduado del MBA de la Universidad GLOBIS, combino experiencia técnica con perspicacia estratégica empresarial. Mi trayectoria ha estado marcada por el aprendizaje continuo, la innovación y el compromiso con impulsar la transformación digital en entornos industriales.">As a patent holder and MBA graduate from GLOBIS University, I combine technical expertise with strategic business acumen. My journey has been marked by continuous learning, innovation, and a commitment to driving digital transformation in industrial settings.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section class="section experience" id="experience">
+    <section id="experience" class="experience">
         <div class="container">
-            <h2 class="section-title">Professional Journey</h2>
+            <h2 class="section-title">
+                <span data-en="Professional Experience" data-es="Experiencia Profesional">Professional Experience</span>
+            </h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h3 class="timeline-title">Business Development & Project Management Strategist</h3>
-                        <div class="timeline-meta">
-                            <span class="company">Yokogawa Electric Corporation</span>
-                            <span class="location">Tokyo, Japan</span>
-                            <span class="duration">2022 - Present</span>
+                        <div class="timeline-header">
+                            <h3 data-en="Project Management, AI Solution Delivery" data-es="Gestión de Proyectos, Entrega de Soluciones de IA">Project Management, AI Solution Delivery</h3>
+                            <span class="company">Yokogawa Digital Corporation</span>
+                            <span class="period" data-en="April 2024 - Present" data-es="Abril 2024 - Presente">April 2024 - Present</span>
+                            <span class="location" data-en="Tokyo, Japan" data-es="Tokio, Japón">Tokyo, Japan</span>
                         </div>
-                        <ul class="timeline-achievements">
-                            <li>Leading digital transformation strategies for smart manufacturing solutions across global markets</li>
-                            <li>Developing cutting-edge robotics and drone solutions for industrial automation and safety</li>
-                            <li>Patent holder for autonomous patrol systems enabling advanced mission planning and execution</li>
-                            <li>Integrating AI, Digital Twin, and IoT technologies to enhance operational safety and performance</li>
-                            <li>Managing cross-cultural teams and international partnerships spanning Asia, Europe, and Americas</li>
+                        <ul class="timeline-responsibilities">
+                            <li data-en="Manage approx. $1M budget for initial development of AI control model" data-es="Gestiono aproximadamente $1M de presupuesto para el desarrollo inicial del modelo de control de IA">Manage approx. $1M budget for initial development of AI control model</li>
+                            <li data-en="Lead cross-functional team of 9 members in AI model design and implementation" data-es="Lidero un equipo multifuncional de 9 miembros en el diseño e implementación de modelos de IA">Lead cross-functional team of 9 members in AI model design and implementation</li>
+                            <li data-en="Monitor and execute roadmap leveraging industrial knowledge and collaboration" data-es="Monitoreo y ejecuto la hoja de ruta aprovechando el conocimiento industrial y la colaboración">Monitor and execute roadmap leveraging industrial knowledge and collaboration</li>
                         </ul>
+                        <div class="achievement">
+                            <span class="status status--success" data-en="Best Performance Award 2024" data-es="Premio al Mejor Rendimiento 2024">Best Performance Award 2024</span>
+                        </div>
                     </div>
                 </div>
-
+                
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h3 class="timeline-title">MBA Student & Research Scholar</h3>
-                        <div class="timeline-meta">
-                            <span class="company">GLOBIS University</span>
-                            <span class="location">Tokyo, Japan</span>
-                            <span class="duration">2019 - 2022</span>
+                        <div class="timeline-header">
+                            <h3 data-en="Digital Business Consultant" data-es="Consultor de Negocios Digitales">Digital Business Consultant</h3>
+                            <span class="company">JCE Japan Creative Enterprise</span>
+                            <span class="period" data-en="December 2021 - Present" data-es="Diciembre 2021 - Presente">December 2021 - Present</span>
+                            <span class="location" data-en="Greater Tokyo Area" data-es="Área Metropolitana de Tokio">Greater Tokyo Area</span>
                         </div>
-                        <ul class="timeline-achievements">
-                            <li>Completed MBA with focus on disruptive technological innovation and strategic management</li>
-                            <li>Studied under prestigious Monbukagakusho scholarship from the Japanese government</li>
-                            <li>Specialized in human-centric approach to Industry 5.0 and sustainable business models</li>
-                            <li>Built international network with professionals from diverse cultural and technical backgrounds</li>
-                            <li>Conducted research on cross-cultural technology adoption in manufacturing environments</li>
+                        <ul class="timeline-responsibilities">
+                            <li data-en="Spearheaded Singaporean IIoT SME initiative" data-es="Lideré la iniciativa SME de IIoT de Singapur">Spearheaded Singaporean IIoT SME initiative</li>
+                            <li data-en="Led development of internal tools using RPA" data-es="Lideré el desarrollo de herramientas internas usando RPA">Led development of internal tools using RPA</li>
+                            <li data-en="Reduced email dependency by 15-20%" data-es="Reduje la dependencia del correo electrónico en un 15-20%">Reduced email dependency by 15-20%</li>
+                            <li data-en="Fostered reduction in human error rates by 20%" data-es="Fomenté la reducción de tasas de error humano en un 20%">Fostered reduction in human error rates by 20%</li>
                         </ul>
                     </div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Industrial Engineering Graduate</h3>
-                        <div class="timeline-meta">
-                            <span class="company">IQS School of Engineering</span>
-                            <span class="location">Barcelona, Spain</span>
-                            <span class="duration">2015 - 2019</span>
+            </div>
+            
+            <div class="education-section">
+                <h3 class="subsection-title">
+                    <span data-en="Education" data-es="Educación">Education</span>
+                </h3>
+                <div class="education-grid">
+                    <div class="education-item card">
+                        <div class="card__body">
+                            <h4>MBA</h4>
+                            <p class="institution">GLOBIS University</p>
+                            <p class="location" data-en="Tokyo, Japan" data-es="Tokio, Japón">Tokyo, Japan</p>
+                            <span class="status status--info" data-en="Monbukagakusho Scholarship Recipient" data-es="Beneficiario de Beca Monbukagakusho">Monbukagakusho Scholarship Recipient</span>
                         </div>
-                        <ul class="timeline-achievements">
-                            <li>Completed MSc in Industrial Engineering with distinction and honors</li>
-                            <li>Focused on automation, process optimization, and lean manufacturing principles</li>
-                            <li>Gained international experience in project management and systems integration</li>
-                            <li>Built foundation in chemical and industrial engineering with specialization in automation</li>
-                            <li>Developed expertise in statistical analysis and data-driven decision making</li>
-                        </ul>
+                    </div>
+                    <div class="education-item card">
+                        <div class="card__body">
+                            <h4 data-en="MSc Industrial Engineering" data-es="MSc Ingeniería Industrial">MSc Industrial Engineering</h4>
+                            <p class="institution">IQS School of Engineering</p>
+                            <p class="location" data-en="Barcelona, Spain" data-es="Barcelona, España">Barcelona, Spain</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -135,55 +150,59 @@
     </section>
 
     <!-- Skills Section -->
-    <section class="section skills" id="skills">
+    <section id="skills" class="skills">
         <div class="container">
-            <h2 class="section-title">My Expertise</h2>
+            <h2 class="section-title">
+                <span data-en="Skills & Expertise" data-es="Habilidades y Experiencia">Skills & Expertise</span>
+            </h2>
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Technology & Innovation</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">AI & Machine Learning</span>
-                        <span class="skill-tag">Robotics & Automation</span>
-                        <span class="skill-tag">Digital Transformation</span>
-                        <span class="skill-tag">IoT & Industry 4.0</span>
-                        <span class="skill-tag">Drone Technologies</span>
-                        <span class="skill-tag">Digital Twin</span>
+                <div class="skill-category card">
+                    <div class="card__body">
+                        <h3 data-en="Technical Skills" data-es="Habilidades Técnicas">Technical Skills</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag" data-en="AI & Machine Learning" data-es="IA y Aprendizaje Automático">AI & Machine Learning</span>
+                            <span class="skill-tag" data-en="Robotics" data-es="Robótica">Robotics</span>
+                            <span class="skill-tag" data-en="Digital Transformation" data-es="Transformación Digital">Digital Transformation</span>
+                            <span class="skill-tag" data-en="Systems Architecture" data-es="Arquitectura de Sistemas">Systems Architecture</span>
+                            <span class="skill-tag" data-en="Patent Development" data-es="Desarrollo de Patentes">Patent Development</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Business & Strategy</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Business Development</span>
-                        <span class="skill-tag">Project Management</span>
-                        <span class="skill-tag">Strategic Planning</span>
-                        <span class="skill-tag">Partnership Management</span>
-                        <span class="skill-tag">Cross-Cultural Leadership</span>
-                        <span class="skill-tag">Innovation Management</span>
+                
+                <div class="skill-category card">
+                    <div class="card__body">
+                        <h3 data-en="Business Skills" data-es="Habilidades Empresariales">Business Skills</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag" data-en="Business Development" data-es="Desarrollo de Negocios">Business Development</span>
+                            <span class="skill-tag" data-en="Project Management" data-es="Gestión de Proyectos">Project Management</span>
+                            <span class="skill-tag" data-en="Strategic Planning" data-es="Planificación Estratégica">Strategic Planning</span>
+                            <span class="skill-tag" data-en="Stakeholder Management" data-es="Gestión de Partes Interesadas">Stakeholder Management</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Technical Competencies</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Systems Architecture</span>
-                        <span class="skill-tag">Patent Development</span>
-                        <span class="skill-tag">Technical Proposals</span>
-                        <span class="skill-tag">Fleet Management</span>
-                        <span class="skill-tag">Agile Methodologies</span>
-                        <span class="skill-tag">Process Optimization</span>
+                
+                <div class="skill-category card">
+                    <div class="card__body">
+                        <h3 data-en="Tools & Methodologies" data-es="Herramientas y Metodologías">Tools & Methodologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag" data-en="Agile Methodologies" data-es="Metodologías Ágiles">Agile Methodologies</span>
+                            <span class="skill-tag">Scrum</span>
+                            <span class="skill-tag">RPA</span>
+                            <span class="skill-tag" data-en="Digital Twin" data-es="Gemelo Digital">Digital Twin</span>
+                            <span class="skill-tag" data-en="Drone Technology" data-es="Tecnología de Drones">Drone Technology</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Languages & Soft Skills</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Multilingual (4 Languages)</span>
-                        <span class="skill-tag">Critical Thinking</span>
-                        <span class="skill-tag">International Collaboration</span>
-                        <span class="skill-tag">Innovation Leadership</span>
-                        <span class="skill-tag">Cultural Intelligence</span>
-                        <span class="skill-tag">Stakeholder Management</span>
+                
+                <div class="skill-category card">
+                    <div class="card__body">
+                        <h3 data-en="Languages" data-es="Idiomas">Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag" data-en="Spanish" data-es="Español">Spanish</span>
+                            <span class="skill-tag" data-en="English" data-es="Inglés">English</span>
+                            <span class="skill-tag" data-en="Catalan" data-es="Catalán">Catalan</span>
+                            <span class="skill-tag" data-en="Japanese" data-es="Japonés">Japanese</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -191,37 +210,39 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="section testimonials" id="testimonials">
+    <section id="testimonials" class="testimonials">
         <div class="container">
-            <h2 class="section-title">What Colleagues Are Saying</h2>
+            <h2 class="section-title">
+                <span data-en="What Colleagues Say" data-es="Lo Que Dicen los Colegas">What Colleagues Say</span>
+            </h2>
             <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">
-                        "Nil's unique ability to bridge Eastern and Western business cultures while delivering cutting-edge robotics solutions has been invaluable to our digital transformation initiatives."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-name">Dr. Yamamoto Tanaka</div>
-                        <div class="author-title">Senior Director, Yokogawa</div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">
-                        "His multicultural perspective and deep technical expertise in AI and automation make him an exceptional strategic partner in our Industry 5.0 journey."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-name">Maria Rodriguez</div>
-                        <div class="author-title">VP Innovation, Manufacturing Partner</div>
+                <div class="testimonial-card card">
+                    <div class="card__body">
+                        <p class="testimonial-text" data-en="Nil's innovative approach to AI and robotics has been instrumental in our digital transformation initiatives. His ability to bridge technical complexity with business strategy is exceptional." data-es="El enfoque innovador de Nil hacia la IA y la robótica ha sido fundamental en nuestras iniciativas de transformación digital. Su capacidad para conectar la complejidad técnica con la estrategia empresarial es excepcional.">Nil's innovative approach to AI and robotics has been instrumental in our digital transformation initiatives. His ability to bridge technical complexity with business strategy is exceptional.</p>
+                        <div class="testimonial-author">
+                            <strong data-en="Senior Director of Innovation" data-es="Director Senior de Innovación">Senior Director of Innovation</strong>
+                            <span>Yokogawa Electric Corporation</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">
-                        "Nil consistently delivers innovative solutions that not only meet technical requirements but also consider the human element in digital transformation."
+                
+                <div class="testimonial-card card">
+                    <div class="card__body">
+                        <p class="testimonial-text" data-en="Working with Nil has been a pleasure. His multicultural perspective and deep technical expertise make him a valuable asset to any team focused on cutting-edge technology solutions." data-es="Trabajar con Nil ha sido un placer. Su perspectiva multicultural y profunda experiencia técnica lo convierten en un activo valioso para cualquier equipo centrado en soluciones tecnológicas de vanguardia.">Working with Nil has been a pleasure. His multicultural perspective and deep technical expertise make him a valuable asset to any team focused on cutting-edge technology solutions.</p>
+                        <div class="testimonial-author">
+                            <strong data-en="VP of Technology" data-es="VP de Tecnología">VP of Technology</strong>
+                            <span data-en="Industrial Automation Sector" data-es="Sector de Automatización Industrial">Industrial Automation Sector</span>
+                        </div>
                     </div>
-                    <div class="testimonial-author">
-                        <div class="author-name">Prof. Akira Sato</div>
-                        <div class="author-title">GLOBIS University</div>
+                </div>
+                
+                <div class="testimonial-card card">
+                    <div class="card__body">
+                        <p class="testimonial-text" data-en="Nil consistently delivers results that exceed expectations. His leadership in robotics and AI implementation has significantly improved our operational efficiency." data-es="Nil entrega consistentemente resultados que superan las expectativas. Su liderazgo en la implementación de robótica e IA ha mejorado significativamente nuestra eficiencia operacional.">Nil consistently delivers results that exceed expectations. His leadership in robotics and AI implementation has significantly improved our operational efficiency.</p>
+                        <div class="testimonial-author">
+                            <strong data-en="Project Lead" data-es="Líder de Proyecto">Project Lead</strong>
+                            <span data-en="Smart Manufacturing Division" data-es="División de Manufactura Inteligente">Smart Manufacturing Division</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -229,31 +250,36 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section contact" id="contact">
+    <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Let's Connect</h2>
+            <h2 class="section-title">
+                <span data-en="Let's Connect" data-es="Conectemos">Let's Connect</span>
+            </h2>
             <div class="contact-content">
-                <p class="contact-subtitle">Ready to discuss the future of smart manufacturing? Let's start a conversation.</p>
+                <p class="contact-description" data-en="Ready to discuss AI and robotics solutions? Let's explore how we can drive innovation together." data-es="¿Listo para discutir soluciones de IA y robótica? Exploremos cómo podemos impulsar la innovación juntos.">Ready to discuss AI and robotics solutions? Let's explore how we can drive innovation together.</p>
                 
                 <div class="contact-info">
                     <div class="contact-item">
-                        <a href="mailto:nil@postiusgroup.com" class="contact-link">
-                            <span class="contact-icon">✉</span>
-                            <span>nil@postiusgroup.com</span>
-                        </a>
+                        <strong data-en="Email" data-es="Correo Electrónico">Email</strong>
+                        <a href="mailto:nil@postiusgroup.com">nil@postiusgroup.com</a>
                     </div>
-                    
                     <div class="contact-item">
-                        <a href="https://www.linkedin.com/in/npostius/" target="_blank" class="contact-link">
-                            <span class="contact-icon">💼</span>
-                            <span>LinkedIn Profile</span>
-                        </a>
+                        <strong>LinkedIn</strong>
+                        <a href="https://www.linkedin.com/in/npostius/" target="_blank">linkedin.com/in/npostius/</a>
                     </div>
-                    
-                    <div class="contact-location">
-                        <span class="location-icon">📍</span>
-                        <span>Based in Tokyo, Japan | Available for global collaborations</span>
+                    <div class="contact-item">
+                        <strong data-en="Location" data-es="Ubicación">Location</strong>
+                        <span data-en="Tokyo, Japan" data-es="Tokio, Japón">Tokyo, Japan</span>
                     </div>
+                </div>
+                
+                <div class="contact-actions">
+                    <a href="mailto:nil@postiusgroup.com" class="btn btn--primary">
+                        <span data-en="Send Email" data-es="Enviar Correo">Send Email</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/npostius/" target="_blank" class="btn btn--outline">
+                        <span data-en="View LinkedIn" data-es="Ver LinkedIn">View LinkedIn</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -262,7 +288,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Nil Postius Echeverri. All rights reserved.</p>
+            <p>&copy; 2024 Nil Postius Echeverri. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></p>
         </div>
     </footer>
 

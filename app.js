@@ -1,349 +1,429 @@
-// JavaScript for Nil Postius Personal Landing Page
+// Language switching functionality
+class LanguageSwitcher {
+    constructor() {
+        this.currentLanguage = 'en';
+        this.init();
+    }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
-    const nav = document.getElementById('nav');
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const ctaButtons = document.querySelectorAll('[data-scroll]');
-    
-    // Navigation scroll effect
-    let lastScrollTop = 0;
-    
-    function handleNavScroll() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 100) {
-            nav.style.background = 'rgba(255, 255, 255, 0.98)';
-            nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-        } else {
-            nav.style.background = 'rgba(255, 255, 255, 0.95)';
-            nav.style.boxShadow = 'none';
-        }
-        
-        lastScrollTop = scrollTop;
+    init() {
+        this.bindEvents();
+        this.setInitialLanguage();
     }
-    
-    // Mobile menu toggle
-    function toggleMobileMenu() {
-        navMenu.classList.toggle('active');
-        navToggle.classList.toggle('active');
-        
-        // Prevent body scroll when menu is open
-        if (navMenu.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
+
+    bindEvents() {
+        const langButtons = document.querySelectorAll('.lang-btn');
+        langButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const lang = e.target.getAttribute('data-lang');
+                this.switchLanguage(lang);
+            });
+        });
     }
-    
-    // Close mobile menu when clicking on links
-    function closeMobileMenu() {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-        document.body.style.overflow = '';
+
+    setInitialLanguage() {
+        // Check if user has a language preference stored or use browser language
+        const browserLang = navigator.language.slice(0, 2);
+        const preferredLang = ['en', 'es'].includes(browserLang) ? browserLang : 'en';
+        this.switchLanguage(preferredLang);
     }
-    
-    // Smooth scroll function
-    function smoothScrollTo(targetId) {
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            const offsetTop = targetElement.offsetTop - 80; // Account for fixed nav
-            
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
+
+    switchLanguage(lang) {
+        if (lang === this.currentLanguage) return;
+
+        this.currentLanguage = lang;
+        this.updateContent(lang);
+        this.updateActiveButton(lang);
+        document.documentElement.lang = lang;
+    }
+
+    updateContent(lang) {
+        const elements = document.querySelectorAll('[data-en][data-es]');
+        elements.forEach(element => {
+            const content = element.getAttribute(`data-${lang}`);
+            if (content) {
+                element.textContent = content;
+            }
+        });
+    }
+
+    updateActiveButton(lang) {
+        const langButtons = document.querySelectorAll('.lang-btn');
+        langButtons.forEach(button => {
+            button.classList.remove('active');
+            if (button.getAttribute('data-lang') === lang) {
+                button.classList.add('active');
+            }
+        });
+    }
+}
+
+// Mobile navigation
+class MobileNavigation {
+    constructor() {
+        this.hamburger = document.querySelector('.hamburger');
+        this.navLinks = document.querySelector('.nav-links');
+        this.navLinksItems = document.querySelectorAll('.nav-links a');
+        this.init();
+    }
+
+    init() {
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        if (this.hamburger) {
+            this.hamburger.addEventListener('click', () => {
+                this.toggleMenu();
             });
         }
+
+        // Close menu when clicking on nav links
+        this.navLinksItems.forEach(link => {
+            link.addEventListener('click', () => {
+                this.closeMenu();
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-menu') && this.navLinks.classList.contains('active')) {
+                this.closeMenu();
+            }
+        });
     }
-    
-    // Handle CTA button clicks
-    function handleCTAClick(event) {
-        event.preventDefault();
-        const targetId = event.target.getAttribute('data-scroll');
-        smoothScrollTo(targetId);
-        closeMobileMenu();
+
+    toggleMenu() {
+        this.navLinks.classList.toggle('active');
+        this.hamburger.classList.toggle('active');
     }
-    
-    // Handle navigation link clicks
-    function handleNavClick(event) {
-        event.preventDefault();
-        const href = event.target.getAttribute('href');
-        const targetId = href.substring(1); // Remove the '#' from href
-        smoothScrollTo(targetId);
-        closeMobileMenu();
+
+    closeMenu() {
+        this.navLinks.classList.remove('active');
+        this.hamburger.classList.remove('active');
     }
-    
-    // Active navigation highlighting
-    function updateActiveNav() {
-        const sections = document.querySelectorAll('section[id]');
+}
+
+// Smooth scrolling and active nav highlighting
+class NavigationScroller {
+    constructor() {
+        this.navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+        this.sections = document.querySelectorAll('section[id]');
+        this.init();
+    }
+
+    init() {
+        this.bindEvents();
+        this.highlightActiveSection();
+    }
+
+    bindEvents() {
+        this.navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            this.highlightActiveSection();
+        });
+    }
+
+    highlightActiveSection() {
         const scrollPosition = window.scrollY + 100;
-        
-        sections.forEach(section => {
+
+        this.sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
-            
+
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                // Remove active class from all nav links
-                navLinks.forEach(link => link.classList.remove('active'));
-                
-                // Add active class to current section's nav link
-                const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
+                this.updateActiveNavLink(sectionId);
             }
         });
     }
-    
-    // Intersection Observer for animations
-    function setupScrollAnimations() {
-        const observerOptions = {
+
+    updateActiveNavLink(activeId) {
+        this.navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${activeId}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+}
+
+// Intersection Observer for fade-in animations
+class AnimationObserver {
+    constructor() {
+        this.observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-        
-        const observer = new IntersectionObserver((entries) => {
+        this.init();
+    }
+
+    init() {
+        this.setupObserver();
+        this.markElementsForAnimation();
+    }
+
+    setupObserver() {
+        this.observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
-        
-        // Observe elements that should animate on scroll
-        const animatedElements = document.querySelectorAll('.timeline-item, .skill-category, .testimonial-card');
-        animatedElements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-            observer.observe(el);
-        });
+        }, this.observerOptions);
     }
-    
-    // Typing animation for hero headline
-    function initTypingAnimation() {
-        const headline = document.querySelector('.hero-headline');
-        if (!headline) return;
-        
-        const text = headline.textContent;
-        headline.textContent = '';
-        headline.style.borderRight = '2px solid rgba(255, 255, 255, 0.7)';
-        
-        let index = 0;
-        const typeSpeed = 50;
-        
-        function typeWriter() {
-            if (index < text.length) {
-                headline.textContent += text.charAt(index);
-                index++;
-                setTimeout(typeWriter, typeSpeed);
-            } else {
-                // Remove cursor after typing is complete
-                setTimeout(() => {
-                    headline.style.borderRight = 'none';
-                }, 1000);
-            }
-        }
-        
-        // Start typing animation after a delay
-        setTimeout(typeWriter, 1000);
-    }
-    
-    // Skill tags hover effect
-    function initSkillTagsEffect() {
-        const skillTags = document.querySelectorAll('.skill-tag');
-        
-        skillTags.forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px) scale(1.05)';
-            });
-            
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
+
+    markElementsForAnimation() {
+        const elementsToAnimate = [
+            '.hero-content',
+            '.about-content',
+            '.timeline-item',
+            '.education-item',
+            '.skill-category',
+            '.testimonial-card',
+            '.contact-content'
+        ];
+
+        elementsToAnimate.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach((element, index) => {
+                element.classList.add('fade-in');
+                element.style.transitionDelay = `${index * 0.1}s`;
+                this.observer.observe(element);
             });
         });
     }
-    
-    // Contact form enhancement (if a form is added later)
-    function initContactForm() {
-        const contactLinks = document.querySelectorAll('.contact-link');
-        
-        contactLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Add click animation
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 150);
-            });
-        });
+}
+
+// Navbar scroll effect
+class NavbarScroller {
+    constructor() {
+        this.navbar = document.querySelector('.navbar');
+        this.lastScrollY = window.scrollY;
+        this.init();
     }
-    
-    // Parallax effect for hero background
-    function initParallaxEffect() {
-        const heroBackground = document.querySelector('.hero-background');
-        if (!heroBackground) return;
-        
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            heroBackground.style.transform = `translateY(${rate}px)`;
-        }
-        
-        // Use requestAnimationFrame for smooth parallax
-        let ticking = false;
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        }
-        
+
+    init() {
+        this.bindEvents();
+    }
+
+    bindEvents() {
         window.addEventListener('scroll', () => {
-            requestTick();
-            ticking = false;
+            this.handleScroll();
         });
     }
-    
-    // Initialize loading animation
-    function initLoadingAnimation() {
-        // Add fade-in animation to main sections
-        const sections = document.querySelectorAll('.section');
-        sections.forEach((section, index) => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-            
-            setTimeout(() => {
-                section.style.opacity = '1';
-                section.style.transform = 'translateY(0)';
-            }, index * 200);
+
+    handleScroll() {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > 100) {
+            this.navbar.style.boxShadow = 'var(--shadow-lg)';
+        } else {
+            this.navbar.style.boxShadow = 'none';
+        }
+
+        this.lastScrollY = currentScrollY;
+    }
+}
+
+// Skill tags hover effect
+class SkillTagsEffects {
+    constructor() {
+        this.skillTags = document.querySelectorAll('.skill-tag');
+        this.init();
+    }
+
+    init() {
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        this.skillTags.forEach(tag => {
+            tag.addEventListener('mouseenter', () => {
+                this.addHoverEffect(tag);
+            });
+
+            tag.addEventListener('mouseleave', () => {
+                this.removeHoverEffect(tag);
+            });
         });
     }
-    
-    // Debounce function for performance
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
+
+    addHoverEffect(tag) {
+        tag.style.boxShadow = 'var(--shadow-md)';
     }
-    
-    // Event Listeners
-    navToggle.addEventListener('click', toggleMobileMenu);
-    
-    // Add click handlers for navigation links
-    navLinks.forEach(link => {
-        link.addEventListener('click', handleNavClick);
-    });
-    
-    // Add click handlers for CTA buttons
-    ctaButtons.forEach(button => {
-        button.addEventListener('click', handleCTAClick);
-    });
-    
-    // Scroll event listeners
-    window.addEventListener('scroll', debounce(() => {
-        handleNavScroll();
-        updateActiveNav();
-    }, 10));
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const isClickInsideNav = nav.contains(event.target);
-        
-        if (!isClickInsideNav && navMenu.classList.contains('active')) {
-            closeMobileMenu();
-        }
-    });
-    
-    // Handle window resize
-    window.addEventListener('resize', debounce(() => {
-        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
-            closeMobileMenu();
-        }
-    }, 250));
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && navMenu.classList.contains('active')) {
-            closeMobileMenu();
-        }
-    });
-    
-    // Initialize all features
-    function init() {
-        setupScrollAnimations();
-        initTypingAnimation();
-        initSkillTagsEffect();
-        initContactForm();
-        initParallaxEffect();
-        initLoadingAnimation();
-        
-        // Add CSS for active nav links
-        const style = document.createElement('style');
-        style.textContent = `
-            .nav-link.active {
-                color: var(--color-tech-secondary);
-                position: relative;
-            }
-            .nav-link.active::after {
-                content: '';
-                position: absolute;
-                bottom: -5px;
-                left: 0;
-                width: 100%;
-                height: 2px;
-                background: var(--color-tech-secondary);
-                border-radius: 1px;
-            }
-        `;
-        document.head.appendChild(style);
+
+    removeHoverEffect(tag) {
+        tag.style.boxShadow = 'none';
     }
-    
-    // Initialize everything
-    init();
-    
-    // Add some console logging for debugging
-    console.log('Nil Postius Personal Landing Page loaded successfully!');
-    console.log('Features initialized: Navigation, Smooth Scroll, Animations, Mobile Menu');
-    
-    // Performance monitoring
-    window.addEventListener('load', function() {
-        console.log('Page fully loaded');
-        
-        // Remove any loading states
-        document.body.classList.add('loaded');
-        
-        // Add loaded class styling
-        const loadedStyle = document.createElement('style');
-        loadedStyle.textContent = `
-            body.loaded {
-                overflow-x: hidden;
-            }
-            body.loaded .hero-content {
-                animation: heroFadeIn 1s ease-out;
-            }
-            @keyframes heroFadeIn {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
+}
+
+// Contact form interactions (for future enhancement)
+class ContactInteractions {
+    constructor() {
+        this.emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+        this.linkedinLinks = document.querySelectorAll('a[href*="linkedin"]');
+        this.init();
+    }
+
+    init() {
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        this.emailLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                this.trackInteraction('email_click');
+            });
+        });
+
+        this.linkedinLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                this.trackInteraction('linkedin_click');
+            });
+        });
+    }
+
+    trackInteraction(action) {
+        // Console log for development - can be replaced with analytics
+        console.log(`User interaction: ${action}`);
+    }
+}
+
+// Theme detection and handling
+class ThemeManager {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.detectTheme();
+        this.bindEvents();
+    }
+
+    detectTheme() {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        this.updateTheme(prefersDark.matches ? 'dark' : 'light');
+    }
+
+    bindEvents() {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        prefersDark.addEventListener('change', (e) => {
+            this.updateTheme(e.matches ? 'dark' : 'light');
+        });
+    }
+
+    updateTheme(theme) {
+        document.documentElement.setAttribute('data-color-scheme', theme);
+    }
+}
+
+// Loading and performance optimization
+class PerformanceOptimizer {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.optimizeImages();
+        this.handlePageLoad();
+    }
+
+    optimizeImages() {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.loading = 'lazy';
+        });
+    }
+
+    handlePageLoad() {
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+            this.removeLoadingStates();
+        });
+    }
+
+    removeLoadingStates() {
+        const loadingElements = document.querySelectorAll('.loading');
+        loadingElements.forEach(element => {
+            element.classList.remove('loading');
+        });
+    }
+}
+
+// Error handling and fallbacks
+class ErrorHandler {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.handleErrors();
+    }
+
+    handleErrors() {
+        window.addEventListener('error', (e) => {
+            console.warn('Application error handled:', e.error);
+            this.showFallbackContent();
+        });
+    }
+
+    showFallbackContent() {
+        // Ensure basic functionality works even if JavaScript fails
+        const fallbackStyles = document.createElement('style');
+        fallbackStyles.textContent = `
+            .nav-links { display: flex !important; }
+            .fade-in { opacity: 1 !important; transform: none !important; }
         `;
-        document.head.appendChild(loadedStyle);
-    });
+        document.head.appendChild(fallbackStyles);
+    }
+}
+
+// Initialize all components when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        // Core functionality
+        new LanguageSwitcher();
+        new MobileNavigation();
+        new NavigationScroller();
+        new NavbarScroller();
+        
+        // Enhanced features
+        new AnimationObserver();
+        new SkillTagsEffects();
+        new ContactInteractions();
+        new ThemeManager();
+        new PerformanceOptimizer();
+        new ErrorHandler();
+        
+        console.log('Nil Postius Portfolio: All components initialized successfully');
+    } catch (error) {
+        console.warn('Some components failed to initialize:', error);
+        // Fallback to basic functionality
+        new ErrorHandler();
+    }
 });
+
+// Export for testing if needed
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        LanguageSwitcher,
+        MobileNavigation,
+        NavigationScroller,
+        AnimationObserver
+    };
+}
