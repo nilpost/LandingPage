@@ -68,7 +68,7 @@
       'meta.desc': 'ロボティクス、応用AI、石油・ガス分野の事業オペレーター。横河電機のグローバル・ロボティクス事業を事業計画から初受注まで立ち上げ、現在は湾岸国営石油会社向けAI制御プログラムの遂行責任を担い、並行して米国製造業M&Aのバイサイド分析に従事。東京在住、永住者。',
       'ui.theme': 'カラーテーマを切り替える',
 
-      'hero.flag': '<span><span class="dot"></span>東京</span> <span>永住者 · ビザ支援は不要です</span> <span class="live">経営・事業責任ポジションを検討しています</span>',
+      'hero.flag': '<span><span class="dot"></span>東京</span> <span>永住者 · ビザ支援は不要です</span> <span>業務言語は英語</span> <span class="live">経営・事業責任ポジションを検討しています</span>',
       'hero.tagline': '産業分野の事業オペレーター — ロボティクス、応用AI、石油・ガス。事業をつくり、<em>そして自分で動かす。</em>',
       'hero.lead': '産業技術を収益に変えて10年。<strong>横河電機のグローバル・ロボティクス／ドローン事業</strong>の事業計画を自ら執筆し、白紙の状態から最初の商用受注まで担いました。現在は湾岸地域の国営石油・ガス会社向けAI制御プログラムについて、エンドツーエンドの遂行責任を負っています。並行して、米国製造業M&amp;Aのバイサイド分析にも携わっています。次に求めているのは、自分自身のP&amp;L（損益責任）です。',
       'hero.cta': '<a class="cta" href="mailto:npostius@gmail.com">ご連絡はこちら</a> <a class="cta cta--ghost" href="https://www.linkedin.com/in/NPostius">LinkedIn</a> <a class="cta cta--ghost" href="https://github.com/nilpost">GitHub</a>',
@@ -110,7 +110,7 @@
       'ship.repos': '<a class="repo" href="https://sells.postiusgroup.com"><span class="rn">sell-agent</span><span class="rd">中古品販売の全工程を担う自律エージェント。写真から商品を特定し、相場に照らして価格を決め、日本語と英語で出品文を作成し、購入希望者への返信を下書きします。ジモティー、Facebook Marketplace、Craigslist、メルカリで稼働中。公開ストアフロントあり。Python、テスト316件。</span><span class="rm">非公開リポジトリ · ストアフロント公開中</span></a><a class="repo" href="https://github.com/nilpost/claude-code-studio"><span class="rn">claude-code-studio</span><span class="rd">目的特化型AIエージェントを公開しているプラグインマーケットプレイス。求人を調査し、応募書類を個別に最適化し、実際の応募を遂行する10体のエージェント群を含みます。</span><span class="rm">Shell · エージェント統制</span></a><a class="repo" href="https://github.com/nilpost/nebra-rockpi-ttn-gateway"><span class="rn">nebra-rockpi-ttn-gateway</span><span class="rd">退役したHeliumマイナー（Rock Pi 4B＋SX1301コンセントレータ）を、The Things Network上で動く独立したLoRaWANゲートウェイへ再生させたプロジェクト。</span><span class="rm">C · ハードウェア</span></a><a class="repo" href="https://github.com/nilpost/jobtrack"><span class="rn">jobtrack</span><span class="rd">求職活動のためのローカルファースト／セルフホスト可能なカンバン管理ツール。ブラウザで設定不要、任意で自前サーバーと同期できます。</span><span class="rm">TypeScript</span></a><a class="repo" href="https://github.com/nilpost/github-dashboard"><span class="rn">github-dashboard</span><span class="rd">依存関係の監視、脆弱性の追跡、アーキテクチャの可視化、ログ集約を行うリポジトリダッシュボード。</span><span class="rm">TypeScript</span></a><a class="repo" href="https://github.com/nilpost/equis-nexus-website"><span class="rn">equis-nexus-website</span><span class="rd">多言語対応のウェブサイトと投資家向けポートフォリオ。equis-nexus.com で公開中。</span><span class="rm">TypeScript · 公開中</span></a>',
 
       'con.h': 'お話ししましょう',
-      'con.intro': '売上とコストに責任を持つポジション — 日本国内、または日本を担当範囲に含む役割 — を募集されているのであれば、ぜひお話を伺いたいと思います。ビザ支援は不要で、2週間前の通知で着任できます。',
+      'con.intro': '売上とコストに責任を持つポジション — 日本国内、または日本を担当範囲に含む役割 — を募集されているのであれば、ぜひお話を伺いたいと思います。ビザ支援は不要で、2週間前の通知で着任できます。<br><br>なお、本ページは翻訳版です。私の日本語は基礎レベルで、業務上のやり取りは英語でお願いしております。',
       'con.grid': '<div><span class="lbl">メール</span><span class="val"><a href="mailto:npostius@gmail.com">npostius@gmail.com</a></span></div><div><span class="lbl">LinkedIn</span><span class="val"><a href="https://www.linkedin.com/in/NPostius">/in/NPostius</a></span></div><div><span class="lbl">GitHub</span><span class="val"><a href="https://github.com/nilpost">@nilpost</a></span></div>',
       'con.colophon': '<span>ニル・ポスティウス・エチェベリ</span><span>東京</span><span>永住者 · アンドラ国籍</span><span>2週間前の通知で着任可能</span>'
     }
