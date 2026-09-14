@@ -132,7 +132,7 @@ h1{
   color:var(--ink-2);
   letter-spacing:-.008em;
   margin:0 0 30px;
-  max-width:34ch;
+  max-width:46ch;
   text-wrap:balance;
   animation:rise .5s .19s both ease-out;
 }
@@ -290,16 +290,30 @@ h1{
   .phase .when,.year .t{padding-top:0}
   .direction{padding-left:18px}
 }
-/* ---- theme toggle (standalone site only) ---- */
+
+/* ---- controls: language + theme ---- */
+.controls{
+  position:fixed;top:14px;right:14px;z-index:60;
+  display:flex;align-items:center;gap:8px;
+}
+.lang-switch{display:flex;background:var(--paper);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.lang-switch button{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;
+  background:transparent;border:0;border-left:1px solid var(--rule-soft);
+  color:var(--ink-3);padding:9px 10px;cursor:pointer;line-height:1;
+  transition:color .15s,background .15s;
+}
+.lang-switch button:first-child{border-left:0}
+.lang-switch button:hover{color:var(--ink)}
+.lang-switch button.is-active{color:var(--accent);background:var(--accent-wash)}
 .theme-toggle{
-  position:fixed;top:16px;right:16px;z-index:50;
-  width:38px;height:38px;display:grid;place-items:center;
+  width:36px;height:36px;display:grid;place-items:center;
   background:var(--paper);border:1px solid var(--rule);border-radius:2px;
-  color:var(--ink-2);cursor:pointer;padding:0;
+  color:var(--ink-3);cursor:pointer;padding:0;
   transition:border-color .15s,color .15s;
 }
 .theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
-.theme-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.theme-toggle svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
 .theme-toggle .moon{display:none}
 :root[data-theme="dark"] .theme-toggle .moon{display:block}
 :root[data-theme="dark"] .theme-toggle .sun{display:none}
@@ -307,11 +321,56 @@ h1{
   :root:not([data-theme="light"]) .theme-toggle .moon{display:block}
   :root:not([data-theme="light"]) .theme-toggle .sun{display:none}
 }
+
+/* Hide the English source only while a translation is about to be applied.
+   The delayed animation is the failsafe: if app.js never runs, the page
+   still reveals itself rather than staying blank. */
+:root[data-lang-pending] .sheet{visibility:hidden;animation:reveal 0s 1.2s forwards}
+@keyframes reveal{to{visibility:visible}}
+
+/* ---- utility classes replacing former inline styles ---- */
+.sub{color:var(--ink-2);margin-bottom:28px}
+.confidential{
+  font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);
+  letter-spacing:.02em;margin-top:16px;line-height:1.5;
+}
+.year .tag{
+  font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);
+  letter-spacing:.06em;text-transform:uppercase;
+}
+h3.spaced{margin-top:26px}
+
+/* ---- Japanese typography ----
+   Latin glyphs keep the Latin faces; only CJK falls through to Noto. */
+:root[lang="ja"]{
+  --f-display:"Archivo","Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --f-prose:"Newsreader","Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-mono:"IBM Plex Mono","Noto Sans JP",ui-monospace,monospace;
+}
+:root[lang="ja"] body{line-height:1.85}
+:root[lang="ja"] .lead{line-height:1.8}
+:root[lang="ja"] h1{letter-spacing:-.02em}
+:root[lang="ja"] .tagline{max-width:27em;line-height:1.55}
+:root[lang="ja"] .rail{letter-spacing:.06em}
+:root[lang="ja"] .facts li,
+:root[lang="ja"] .col li,
+:root[lang="ja"] .year .c{line-height:1.75}
+:root[lang="ja"] .fig .k{line-height:1.6;max-width:24ch}
+/* Japanese has no spaces to break on; keep long runs inside their boxes. */
+:root[lang="ja"] .rd,
+:root[lang="ja"] .facts li span,
+:root[lang="ja"] .phase p{overflow-wrap:anywhere;line-break:strict}
+
+/* Spanish runs longer than English; give the hero a little more room. */
+:root[lang="es"] .tagline{max-width:50ch}
+
 @media print{
-  .theme-toggle{display:none}
+  .controls{display:none}
   body{background:#fff;color:#000;font-size:11pt}
 }
 @media (max-width:720px){
-  .theme-toggle{top:10px;right:10px;width:34px;height:34px}
-  .masthead{padding-top:56px}
+  .controls{top:9px;right:9px;gap:6px}
+  .lang-switch button{padding:8px 8px;font-size:10.5px}
+  .theme-toggle{width:32px;height:32px}
+  .masthead{padding-top:62px}
 }

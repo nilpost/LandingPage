@@ -15,6 +15,9 @@
 <meta property="og:image" content="https://nil.postiusgroup.com/generated_image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="ja_JP">
 <meta property="profile:first_name" content="Nil">
 <meta property="profile:last_name" content="Postius Echeverri">
 <meta name="twitter:card" content="summary_large_image">
@@ -27,15 +30,27 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@300;400;500&display=swap">
 <link rel="stylesheet" href="style.css">
 
 <script>
-  // Applied before first paint so the chosen theme never flashes.
-  try {
-    var t = localStorage.getItem('theme');
-    if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-  } catch (e) {}
+  // Theme and language are applied before first paint so neither flashes.
+  (function () {
+    var d = document.documentElement;
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || t === 'light') d.setAttribute('data-theme', t);
+    } catch (e) {}
+    try {
+      var l = localStorage.getItem('lang');
+      if (!l) {
+        var nav = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+        nav = nav.toLowerCase();
+        l = nav.indexOf('ja') === 0 ? 'ja' : nav.indexOf('es') === 0 ? 'es' : 'en';
+      }
+      if (l === 'ja' || l === 'es') d.setAttribute('data-lang-pending', l);
+    } catch (e) {}
+  }());
 </script>
 
 <script type="application/ld+json">
@@ -64,396 +79,110 @@
 </head>
 <body>
 
-<button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch colour theme">
-  <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M4.2 12H2M22 12h-2.2M6.5 6.5 4.9 4.9M19.1 19.1l-1.6-1.6M17.5 6.5l1.6-1.6M4.9 19.1l1.6-1.6"/></svg>
-  <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z"/></svg>
-</button>
+<div class="controls">
+  <div class="lang-switch" role="group" aria-label="Language">
+    <button type="button" data-lang="en" lang="en">EN</button>
+    <button type="button" data-lang="es" lang="es">ES</button>
+    <button type="button" data-lang="ja" lang="ja">日本語</button>
+  </div>
+  <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch colour theme">
+    <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M4.2 12H2M22 12h-2.2M6.5 6.5 4.9 4.9M19.1 19.1l-1.6-1.6M17.5 6.5l1.6-1.6M4.9 19.1l1.6-1.6"/></svg>
+    <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z"/></svg>
+  </button>
+</div>
 
 <div class="sheet">
 
-  <!-- ============ MASTHEAD ============ -->
   <header class="masthead">
-    <div class="flag">
-      <span><span class="dot"></span>Tokyo · 東京</span>
-      <span>Permanent Resident 永住者 · no sponsorship required</span>
-      <span class="live">Open to senior operating roles</span>
-    </div>
+    <div class="flag" data-i18n="hero.flag"><span><span class="dot"></span>Tokyo · 東京</span> <span>Permanent Resident 永住者 · no sponsorship required</span> <span class="live">Open to senior operating roles</span></div>
 
     <h1>Nil Postius Echeverri</h1>
-    <p class="tagline">Industrial operator — robotics, applied AI and oil&nbsp;&amp;&nbsp;gas. I build the business, <em>then I run it.</em></p>
+    <p class="tagline" data-i18n="hero.tagline">Industrial operator — robotics, applied AI and oil&nbsp;&amp;&nbsp;gas. I build the business, <em>then I run it.</em></p>
 
-    <p class="lead">Ten years turning industrial technology into revenue. I wrote the business plan for <strong>Yokogawa's global robotics and drone business</strong> and carried it from a blank page to its first commercial orders; today I hold end-to-end delivery accountability for an AI control programme for a Gulf national oil operator, and I work buy-side on US manufacturing acquisitions. What I want next is a P&amp;L of my own.</p>
+    <p class="lead" data-i18n="hero.lead">Ten years turning industrial technology into revenue. I wrote the business plan for <strong>Yokogawa's global robotics and drone business</strong> and carried it from a blank page to its first commercial orders; today I hold end-to-end delivery accountability for an AI control programme for a Gulf national oil operator, and I work buy-side on US manufacturing acquisitions. What I want next is a P&amp;L of my own.</p>
 
-    <div class="cta-row">
-      <a class="cta" href="mailto:npostius@gmail.com">Start a conversation</a>
-      <a class="cta cta--ghost" href="https://www.linkedin.com/in/NPostius">LinkedIn</a>
-      <a class="cta cta--ghost" href="https://github.com/nilpost">GitHub</a>
-    </div>
+    <div class="cta-row" data-i18n="hero.cta"><a class="cta" href="mailto:npostius@gmail.com">Start a conversation</a> <a class="cta cta--ghost" href="https://www.linkedin.com/in/NPostius">LinkedIn</a> <a class="cta cta--ghost" href="https://github.com/nilpost">GitHub</a></div>
   </header>
 
-  <!-- ============ EVIDENCE ============ -->
   <section class="band band--open" aria-label="Evidence">
-    <div class="rail"><b>Evidence</b><span>Verified figures</span></div>
+    <div class="rail" data-i18n="rail.evidence"><b>Evidence</b><span>Verified figures</span></div>
     <div class="body">
-      <div class="figures">
-        <div class="fig">
-          <span class="n">$0.44M→$140M</span>
-          <span class="k">Sales path defined in the global robotics business plan I authored</span>
-          <span class="src">FY21 → FY30</span>
-        </div>
-        <div class="fig">
-          <span class="n">¥20.2M</span>
-          <span class="k">First Japanese robotics PoC order won — 16 days across 7 sites</span>
-          <span class="src">TEPCO PG</span>
-        </div>
-        <div class="fig">
-          <span class="n">7+</span>
-          <span class="k">Tier&nbsp;1 and Tier&nbsp;2 oil &amp; gas bids secured, each averaging ~$1M in opportunity value</span>
-          <span class="src">APAC · Japan · MENA</span>
-        </div>
-        <div class="fig">
-          <span class="n">9 / 3</span>
-          <span class="k">Cross-functional team directed, across three countries</span>
-          <span class="src">Japan · UAE · Singapore</span>
-        </div>
-      </div>
+      <div class="figures" data-i18n="ev.figures"><div class="fig"><span class="n">$0.44M→$140M</span><span class="k">Sales path defined in the global robotics business plan I authored</span><span class="src">FY21 → FY30</span></div><div class="fig"><span class="n">¥20.2M</span><span class="k">First Japanese robotics PoC order won — 16 days across 7 sites</span><span class="src">TEPCO PG</span></div><div class="fig"><span class="n">7+</span><span class="k">Tier&nbsp;1 and Tier&nbsp;2 oil &amp; gas bids secured, each averaging ~$1M in opportunity value</span><span class="src">APAC · Japan · MENA</span></div><div class="fig"><span class="n">9 / 3</span><span class="k">Cross-functional team directed, across three countries</span><span class="src">Japan · UAE · Singapore</span></div></div>
     </div>
   </section>
 
-  <!-- ============ PROOF ============ -->
   <section class="band" aria-label="Selected work">
-    <div class="rail"><b>Proof</b><span>Three kinds<br>of ownership</span></div>
+    <div class="rail" data-i18n="rail.proof"><b>Proof</b><span>Three kinds<br>of ownership</span></div>
     <div class="body">
-      <h2>What I have actually owned</h2>
-      <p style="color:var(--ink-2);margin-bottom:30px">Three different jobs, deliberately: creating a business that did not exist, being accountable for one programme end to end, and sitting on the buy side of a deal. They are not the same skill, and I have needed all three.</p>
+      <h2 data-i18n="proof.h">What I have actually owned</h2>
+      <p class="sub" data-i18n="proof.intro">Three different jobs, deliberately: creating a business that did not exist, being accountable for one programme end to end, and sitting on the buy side of a deal. They are not the same skill, and I have needed all three.</p>
 
-      <article class="record">
-        <div class="record-head">
-          <span class="stamp">Build</span>
-          <h3>A global robotics business, from blank page to first orders</h3>
-        </div>
-        <p class="org">Yokogawa Electric Corporation · Business Development, Smart Manufacturing · Tokyo · 2020–2024</p>
-        <p>Yokogawa had no robotics business. I authored the global business plan that created one — the value proposition, the entry wedge (industrial plant inspection robots), and the sales path — then spent four years making the plan true: platform, partners, pursuits and the first paying customers.</p>
-        <ul class="facts">
-          <li><span><b>MVP to commercialisation</b> of the Robot Management Core — fleet management and data contextualisation — with developers in India, robotics engineers in Singapore and the US, and decision-makers in Japan, under C-level sponsorship.</span></li>
-          <li><span>Built a partner network of <b>6+</b> robot, drone and solution companies: <b>Boston Dynamics, ANYbotics, Mitsubishi Heavy Industries, ExRobotics, Taurob, SENSYN</b> — including the business plans Boston Dynamics' top management required across Japan, SEA and the Middle East.</span></li>
-          <li><span>Led the <b>Petronas RaaS</b> technical-evaluation PoC to a successful close; Petronas committed verbally to adopt the offering. Scoped the Stage&nbsp;5 assessment: cybersecurity, integration, co-creation, support model, spare parts, logistics.</span></li>
-          <li><span>Grew the robotics pipeline by approximately <b>120%</b> in under four years.</span></li>
-          <li><span><b>Best Performance Award</b>, Yokogawa Group 2024, for commercialisation of the RMC and PIA solutions.</span></li>
-        </ul>
-      </article>
+      <article class="record" data-i18n="proof.build"><div class="record-head"><span class="stamp">Build</span><h3>A global robotics business, from blank page to first orders</h3></div><p class="org">Yokogawa Electric Corporation · Business Development, Smart Manufacturing · Tokyo · 2020–2024</p><p>Yokogawa had no robotics business. I authored the global business plan that created one — the value proposition, the entry wedge (industrial plant inspection robots), and the sales path — then spent four years making the plan true: platform, partners, pursuits and the first paying customers.</p><ul class="facts"><li><span><b>MVP to commercialisation</b> of the Robot Management Core — fleet management and data contextualisation — with developers in India, robotics engineers in Singapore and the US, and decision-makers in Japan, under C-level sponsorship.</span></li><li><span>Built a partner network of <b>6+</b> robot, drone and solution companies: <b>Boston Dynamics, ANYbotics, Mitsubishi Heavy Industries, ExRobotics, Taurob, SENSYN</b> — including the business plans Boston Dynamics' top management required across Japan, SEA and the Middle East.</span></li><li><span>Led the <b>Petronas RaaS</b> technical-evaluation PoC to a successful close; Petronas committed verbally to adopt the offering. Scoped the Stage&nbsp;5 assessment: cybersecurity, integration, co-creation, support model, spare parts, logistics.</span></li><li><span>Grew the robotics pipeline by approximately <b>120%</b> in under four years.</span></li><li><span><b>Best Performance Award</b>, Yokogawa Group 2024, for commercialisation of the RMC and PIA solutions.</span></li></ul></article>
 
-      <article class="record">
-        <div class="record-head">
-          <span class="stamp">Deliver</span>
-          <h3>End-to-end accountability for an AI control programme</h3>
-        </div>
-        <p class="org">Yokogawa Digital Corporation · AI Product Lead / Program Manager · Tokyo · 2024–present</p>
-        <p>The step here is not size, it is the kind of ownership. Business development means many pursuits and no accountability for what happens after signature. This role is the opposite: one programme, ~$1M, and my name on the roadmap, the governance, the KPIs, the team and the customer relationship all the way through execution.</p>
-        <ul class="facts">
-          <li><span>An <b>AI control model to reduce level fluctuation in separators</b> for a UAE national oil &amp; gas operator — plant identification, model design and the technical proposal.</span></li>
-          <li><span>Owned <b>roadmap, governance, KPIs, dashboards, onboarding and change management</b> end to end, under the AIP5 transformation programme.</span></li>
-          <li><span>Directed a cross-functional team of <b>9</b> spanning <b>Japan, UAE and Singapore</b>.</span></li>
-          <li><span>Built the AI Control Service / FKDPP enablement curriculum — service introduction, case studies, FAQ, sales lifecycle and roleplay content.</span></li>
-        </ul>
-      </article>
+      <article class="record" data-i18n="proof.deliver"><div class="record-head"><span class="stamp">Deliver</span><h3>End-to-end accountability for an AI control programme</h3></div><p class="org">Yokogawa Digital Corporation · AI Product Lead / Program Manager · Tokyo · 2024–present</p><p>The step here is not size, it is the kind of ownership. Business development means many pursuits and no accountability for what happens after signature. This role is the opposite: one programme, ~$1M, and my name on the roadmap, the governance, the KPIs, the team and the customer relationship all the way through execution.</p><ul class="facts"><li><span>An <b>AI control model to reduce level fluctuation in separators</b> for a UAE national oil &amp; gas operator — plant identification, model design and the technical proposal.</span></li><li><span>Owned <b>roadmap, governance, KPIs, dashboards, onboarding and change management</b> end to end, under the AIP5 transformation programme.</span></li><li><span>Directed a cross-functional team of <b>9</b> spanning <b>Japan, UAE and Singapore</b>.</span></li><li><span>Built the AI Control Service / FKDPP enablement curriculum — service introduction, case studies, FAQ, sales lifecycle and roleplay content.</span></li></ul></article>
 
-      <article class="record">
-        <div class="record-head">
-          <span class="stamp">Deal</span>
-          <h3>Buy-side analysis on US manufacturing acquisitions</h3>
-        </div>
-        <p class="org">Project-based, for a Japanese manufacturing group · lower-middle-market US industrials · current</p>
-        <p>Valuation and equipment-appraisal work on a live acquisition pipeline of American manufacturing businesses — machining, metal fabrication, wire harness, controls, industrial distribution — most of them succession sales from owners in their sixties and seventies.</p>
-        <ul class="facts">
-          <li><span>Built the <b>equipment appraisal model</b>: manufacturing year, maintenance, usage and environmental factors resolved into effective age and failure risk, then into a defensible acquisition price.</span></li>
-          <li><span><b>Normalised earnings and owner-replacement analysis</b> — separating what the business earns from what the retiring owner was paying himself.</span></li>
-          <li><span>Financing structures across <b>SBA 7(a)/504, seller notes and real-estate-secured bank debt</b>, and the asset-versus-stock decision where OEM contracts have to transfer intact.</span></li>
-          <li><span>Maintained the deal tracker and the GO/NO-GO record across a multi-state pipeline.</span></li>
-        </ul>
-        <p style="font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.02em;margin-top:16px;line-height:1.5">Targets, valuations and counterparties are confidential and deliberately omitted.</p>
-      </article>
+      <article class="record" data-i18n="proof.deal"><div class="record-head"><span class="stamp">Deal</span><h3>Buy-side analysis on US manufacturing acquisitions</h3></div><p class="org">Project-based, for a Japanese manufacturing group · lower-middle-market US industrials · current</p><p>Valuation and equipment-appraisal work on a live acquisition pipeline of American manufacturing businesses — machining, metal fabrication, wire harness, controls, industrial distribution — most of them succession sales from owners in their sixties and seventies.</p><ul class="facts"><li><span>Built the <b>equipment appraisal model</b>: manufacturing year, maintenance, usage and environmental factors resolved into effective age and failure risk, then into a defensible acquisition price.</span></li><li><span><b>Normalised earnings and owner-replacement analysis</b> — separating what the business earns from what the retiring owner was paying himself.</span></li><li><span>Financing structures across <b>SBA 7(a)/504, seller notes and real-estate-secured bank debt</b>, and the asset-versus-stock decision where OEM contracts have to transfer intact.</span></li><li><span>Maintained the deal tracker and the GO/NO-GO record across a multi-state pipeline.</span></li></ul><p class="confidential">Targets, valuations and counterparties are confidential and deliberately omitted.</p></article>
     </div>
   </section>
 
-  <!-- ============ DIRECTION ============ -->
   <section class="band" aria-label="Direction">
-    <div class="rail"><b>Direction</b><span>Stated, not implied</span></div>
+    <div class="rail" data-i18n="rail.direction"><b>Direction</b><span>Stated, not implied</span></div>
     <div class="body">
-      <h2>Where I am going, and why I am telling you</h2>
-      <p style="color:var(--ink-2);margin-bottom:24px">I would rather be legible than strategic about this. The endgame is to own and operate industrial businesses. That is not a reason to hire me around — it is the reason I will treat your P&amp;L like it is mine.</p>
+      <h2 data-i18n="dir.h">Where I am going, and why I am telling you</h2>
+      <p class="sub" data-i18n="dir.intro">I would rather be legible than strategic about this. The endgame is to own and operate industrial businesses. That is not a reason to hire me around — it is the reason I will treat your P&amp;L like it is mine.</p>
 
-      <div class="direction">
-        <div class="phase">
-          <span class="when">Next</span>
-          <div>
-            <h3>Own a P&amp;L</h3>
-            <p>Country manager, general manager, business-unit head, managing director of a small entity or JV — or corporate development at an industrial. Small enough to see the whole of the business, with real revenue and cost authority.</p>
-          </div>
-        </div>
-        <div class="phase">
-          <span class="when">2–5 yrs</span>
-          <div>
-            <h3>Operations, and the craft of improvement</h3>
-            <p>Throughput, working capital, pricing, cost-to-serve. Run at least one turnaround or post-merger integration — the part where a business gets measurably better rather than merely bought.</p>
-          </div>
-        </div>
-        <div class="phase">
-          <span class="when">Beyond</span>
-          <div>
-            <h3>Acquire and operate</h3>
-            <p>Japan holds the developed world's largest small-business succession gap — hundreds of thousands of profitable SMEs whose owners are past seventy with no successor, many of them machining shops, component makers and plant-maintenance firms I already understand. Permanent residency removes every structural obstacle to owning or directing one.</p>
-          </div>
-        </div>
-      </div>
+      <div class="direction" data-i18n="dir.phases"><div class="phase"><span class="when">Next</span><div><h3>Own a P&amp;L</h3><p>Country manager, general manager, business-unit head, managing director of a small entity or JV — or corporate development at an industrial. Small enough to see the whole of the business, with real revenue and cost authority.</p></div></div><div class="phase"><span class="when">2–5 yrs</span><div><h3>Operations, and the craft of improvement</h3><p>Throughput, working capital, pricing, cost-to-serve. Run at least one turnaround or post-merger integration — the part where a business gets measurably better rather than merely bought.</p></div></div><div class="phase"><span class="when">Beyond</span><div><h3>Acquire and operate</h3><p>Japan holds the developed world's largest small-business succession gap — hundreds of thousands of profitable SMEs whose owners are past seventy with no successor, many of them machining shops, component makers and plant-maintenance firms I already understand. Permanent residency removes every structural obstacle to owning or directing one.</p></div></div></div>
 
-      <p class="aside">The honest constraint: Japanese SME acquisition runs on Japanese, in person, over years. My Japanese is basic. So this is a decision with a language investment attached, or a different geography — Spain and Andorra, where I am native — and I would rather name that trade-off than pretend it away.</p>
+      <p class="aside" data-i18n="dir.aside">The honest constraint: Japanese SME acquisition runs on Japanese, in person, over years. My Japanese is basic. So this is a decision with a language investment attached, or a different geography — Spain and Andorra, where I am native — and I would rather name that trade-off than pretend it away.</p>
     </div>
   </section>
 
-  <!-- ============ RECORD ============ -->
   <section class="band" aria-label="Track record">
-    <div class="rail"><b>Record</b><span>2015 → present</span></div>
+    <div class="rail" data-i18n="rail.record"><b>Record</b><span>2015 → present</span></div>
     <div class="body">
-      <h2>Track record</h2>
-      <div class="years">
-        <div class="year">
-          <span class="t">2024 — present</span>
-          <div>
-            <p class="r">AI Product Lead / Program Manager</p>
-            <p class="c">Yokogawa Digital Corporation <span class="place">· Tokyo, Japan</span></p>
-          </div>
-        </div>
-        <div class="year">
-          <span class="t">2021 — present</span>
-          <div>
-            <p class="r">Digital Business Consultant <span style="font-family:var(--f-mono);font-size:11px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase">concurrent</span></p>
-            <p class="c">JCE — Japan Creative Enterprise <span class="place">· Tokyo.</span> AI and IoT roadmap for a Singaporean SME entering B2B2C asset management; PowerApps/RPA automation cutting email dependency 15–20% and human error ~20%.</p>
-          </div>
-        </div>
-        <div class="year">
-          <span class="t">2020 — 2024</span>
-          <div>
-            <p class="r">Business Development — Smart Manufacturing (DX, Robotics &amp; Drones)</p>
-            <p class="c">Yokogawa Electric Corporation <span class="place">· Tokyo, Japan</span></p>
-          </div>
-        </div>
-        <div class="year">
-          <span class="t">2018</span>
-          <div>
-            <p class="r">Consulting Engineering Services</p>
-            <p class="c">Volkswagen Group Services <span class="place">· Barcelona, Spain.</span> Three industrial automation projects; CAN and LIN integration with Siemens, Schneider and National Instruments.</p>
-          </div>
-        </div>
-        <div class="year">
-          <span class="t">2017</span>
-          <div>
-            <p class="r">Junior Consultant, Mechatronics</p>
-            <p class="c">ITQ GmbH <span class="place">· Munich, Germany.</span> Mechatronic showcase system for global industrial automation customer events.</p>
-          </div>
-        </div>
-        <div class="year">
-          <span class="t">2017</span>
-          <div>
-            <p class="r">Renewable Energy Project Lead</p>
-            <p class="c"><span class="place">Andorra.</span> Delivered a 15&nbsp;kW photovoltaic installation under Andorra's feed-in-tariff policy.</p>
-          </div>
-        </div>
-        <div class="year">
-          <span class="t">2016 — 2017</span>
-          <div>
-            <p class="r">Junior IT Project Engineer</p>
-            <p class="c">ID Group, now Claranet <span class="place">· Barcelona, Spain.</span> BI dashboards for predictive operations.</p>
-          </div>
-        </div>
-        <div class="year">
-          <span class="t">2015</span>
-          <div>
-            <p class="r">Assistant Project Manager, Ceramic &amp; Technical Areas</p>
-            <p class="c">PROGETTI <span class="place">· Vicenza, Italy.</span> HVAC electrical and mechanical installation design, energy-efficiency optimisation.</p>
-          </div>
-        </div>
-      </div>
+      <h2 data-i18n="rec.h">Track record</h2>
+      <div class="years" data-i18n="rec.years"><div class="year"><span class="t">2024 — present</span><div><p class="r">AI Product Lead / Program Manager</p><p class="c">Yokogawa Digital Corporation <span class="place">· Tokyo, Japan</span></p></div></div><div class="year"><span class="t">2021 — present</span><div><p class="r">Digital Business Consultant <span class="tag">concurrent</span></p><p class="c">JCE — Japan Creative Enterprise <span class="place">· Tokyo.</span> AI and IoT roadmap for a Singaporean SME entering B2B2C asset management; PowerApps/RPA automation cutting email dependency 15–20% and human error ~20%.</p></div></div><div class="year"><span class="t">2020 — 2024</span><div><p class="r">Business Development — Smart Manufacturing (DX, Robotics &amp; Drones)</p><p class="c">Yokogawa Electric Corporation <span class="place">· Tokyo, Japan</span></p></div></div><div class="year"><span class="t">2018</span><div><p class="r">Consulting Engineering Services</p><p class="c">Volkswagen Group Services <span class="place">· Barcelona, Spain.</span> Three industrial automation projects; CAN and LIN integration with Siemens, Schneider and National Instruments.</p></div></div><div class="year"><span class="t">2017</span><div><p class="r">Junior Consultant, Mechatronics</p><p class="c">ITQ GmbH <span class="place">· Munich, Germany.</span> Mechatronic showcase system for global industrial automation customer events.</p></div></div><div class="year"><span class="t">2017</span><div><p class="r">Renewable Energy Project Lead</p><p class="c"><span class="place">Andorra.</span> Delivered a 15&nbsp;kW photovoltaic installation under Andorra's feed-in-tariff policy.</p></div></div><div class="year"><span class="t">2016 — 2017</span><div><p class="r">Junior IT Project Engineer</p><p class="c">ID Group, now Claranet <span class="place">· Barcelona, Spain.</span> BI dashboards for predictive operations.</p></div></div><div class="year"><span class="t">2015</span><div><p class="r">Assistant Project Manager, Ceramic &amp; Technical Areas</p><p class="c">PROGETTI <span class="place">· Vicenza, Italy.</span> HVAC electrical and mechanical installation design, energy-efficiency optimisation.</p></div></div></div>
     </div>
   </section>
 
-  <!-- ============ CAPABILITY ============ -->
   <section class="band" aria-label="Capabilities">
-    <div class="rail"><b>Capability</b><span>Depth, then breadth</span></div>
+    <div class="rail" data-i18n="rail.capability"><b>Capability</b><span>Depth, then breadth</span></div>
     <div class="body">
-      <h2>What I am relied on for</h2>
-      <div class="cols">
-        <div class="col">
-          <h3>Expert</h3>
-          <ul>
-            <li>Product management, MVP to commercialisation</li>
-            <li>Program and project management</li>
-            <li>Business development and GTM strategy</li>
-            <li>Partner and vendor management</li>
-            <li>Robotics and drone solutions</li>
-            <li>Technical proposals and RFQ response</li>
-            <li>Cross-regional stakeholder alignment</li>
-            <li>C-level communication</li>
-          </ul>
-        </div>
-        <div class="col">
-          <h3>Proficient</h3>
-          <ul>
-            <li>AI/ML product delivery</li>
-            <li>IT/OT convergence</li>
-            <li>Digital twin</li>
-            <li>Agile / Scrum</li>
-            <li>Cloud platforms — AWS, Azure</li>
-            <li>Systems architecture</li>
-            <li>Jira, Figma, SharePoint, Power Apps</li>
-            <li>BI and dashboarding</li>
-          </ul>
-        </div>
-        <div class="col">
-          <h3>Working knowledge</h3>
-          <ul>
-            <li>FKDPP / reinforcement learning</li>
-            <li>PLC, CAD, CNC, additive manufacturing</li>
-            <li>CAN / LIN protocols</li>
-            <li>Semantic web</li>
-          </ul>
-          <h3 style="margin-top:24px">Languages</h3>
-          <ul>
-            <li>Spanish — native</li>
-            <li>Catalan — native</li>
-            <li>English — business</li>
-            <li>French — conversational</li>
-            <li>Japanese — basic; business communication in English</li>
-          </ul>
-        </div>
-      </div>
+      <h2 data-i18n="cap.h">What I am relied on for</h2>
+      <div class="cols" data-i18n="cap.cols"><div class="col"><h3>Expert</h3><ul><li>Product management, MVP to commercialisation</li><li>Program and project management</li><li>Business development and GTM strategy</li><li>Partner and vendor management</li><li>Robotics and drone solutions</li><li>Technical proposals and RFQ response</li><li>Cross-regional stakeholder alignment</li><li>C-level communication</li></ul></div><div class="col"><h3>Proficient</h3><ul><li>AI/ML product delivery</li><li>IT/OT convergence</li><li>Digital twin</li><li>Agile / Scrum</li><li>Cloud platforms — AWS, Azure</li><li>Systems architecture</li><li>Jira, Figma, SharePoint, Power Apps</li><li>BI and dashboarding</li></ul></div><div class="col"><h3>Working knowledge</h3><ul><li>FKDPP / reinforcement learning</li><li>PLC, CAD, CNC, additive manufacturing</li><li>CAN / LIN protocols</li><li>Semantic web</li></ul><h3 class="spaced">Languages</h3><ul><li>Spanish — native</li><li>Catalan — native</li><li>English — business</li><li>French — conversational</li><li>Japanese — basic; business communication in English</li></ul></div></div>
     </div>
   </section>
 
-  <!-- ============ CREDENTIALS ============ -->
   <section class="band" aria-label="Credentials">
-    <div class="rail"><b>Credentials</b><span>Education<br>&amp; published work</span></div>
+    <div class="rail" data-i18n="rail.credentials"><b>Credentials</b><span>Education<br>&amp; published work</span></div>
     <div class="body">
-      <h2>Credentials</h2>
-      <div class="creds">
-        <div class="cred-group">
-          <h3>Education</h3>
-          <div class="cred">
-            <span class="a">MBA, Management</span>
-            <span class="b">GLOBIS University, Graduate School of Management — Tokyo</span>
-            <span class="c">2019–2020 · MEXT Scholarship, embassy recommendation</span>
-          </div>
-          <div class="cred">
-            <span class="a">Executive Program, Artificial Intelligence for Business</span>
-            <span class="b">ESADE Business &amp; Law School — Barcelona</span>
-            <span class="c">2020</span>
-          </div>
-          <div class="cred">
-            <span class="a">Master's &amp; Bachelor's, Industrial Engineering</span>
-            <span class="b">Ramon Llull University — Barcelona · Materials Science</span>
-            <span class="c">2011–2017</span>
-          </div>
-        </div>
-
-        <div class="cred-group">
-          <h3>Published</h3>
-          <div class="cred">
-            <span class="a">Robots &amp; Drones, the arm of Digitalization</span>
-            <span class="b">Yokogawa Integrated Solutions Blog — supporting the company's IA2IA positioning</span>
-            <span class="c">March 2024 · <a href="https://blog.yokogawa.com">blog.yokogawa.com</a></span>
-          </div>
-          <div class="cred">
-            <span class="a">The Impact of Remote Working on Organizational Collaboration at Snow Peak</span>
-            <span class="b">3rd International Conference on Economics and Social Sciences, Bucharest University of Economic Studies</span>
-            <span class="c">2020 · Co-researcher &amp; presenter</span>
-          </div>
-
-          <h3 style="margin-top:26px">Certifications</h3>
-          <div class="pills">
-            <span class="pill">AWS Certified Cloud Practitioner</span>
-            <span class="pill">Certified ScrumMaster</span>
-            <span class="pill">Certified Scrum Product Owner</span>
-            <span class="pill">ML Specialization — DeepLearning.AI / Stanford</span>
-            <span class="pill">Semantic Web Certification</span>
-            <span class="pill">Certified SOLIDWORKS Associate</span>
-          </div>
-        </div>
-      </div>
+      <h2 data-i18n="cred.h">Credentials</h2>
+      <div class="creds" data-i18n="cred.body"><div class="cred-group"><h3>Education</h3><div class="cred"><span class="a">MBA, Management</span><span class="b">GLOBIS University, Graduate School of Management — Tokyo</span><span class="c">2019–2020 · MEXT Scholarship, embassy recommendation</span></div><div class="cred"><span class="a">Executive Program, Artificial Intelligence for Business</span><span class="b">ESADE Business &amp; Law School — Barcelona</span><span class="c">2020</span></div><div class="cred"><span class="a">Master's &amp; Bachelor's, Industrial Engineering</span><span class="b">Ramon Llull University — Barcelona · Materials Science</span><span class="c">2011–2017</span></div></div><div class="cred-group"><h3>Published</h3><div class="cred"><span class="a">Robots &amp; Drones, the arm of Digitalization</span><span class="b">Yokogawa Integrated Solutions Blog — supporting the company's IA2IA positioning</span><span class="c">March 2024 · <a href="https://blog.yokogawa.com">blog.yokogawa.com</a></span></div><div class="cred"><span class="a">The Impact of Remote Working on Organizational Collaboration at Snow Peak</span><span class="b">3rd International Conference on Economics and Social Sciences, Bucharest University of Economic Studies</span><span class="c">2020 · Co-researcher &amp; presenter</span></div><h3 class="spaced">Certifications</h3><div class="pills"><span class="pill">AWS Certified Cloud Practitioner</span><span class="pill">Certified ScrumMaster</span><span class="pill">Certified Scrum Product Owner</span><span class="pill">ML Specialization — DeepLearning.AI / Stanford</span><span class="pill">Semantic Web Certification</span><span class="pill">Certified SOLIDWORKS Associate</span></div></div></div>
     </div>
   </section>
 
-  <!-- ============ SHIPPED ============ -->
   <section class="band" aria-label="Things I have built">
-    <div class="rail"><b>Shipped</b><span>Nights and<br>weekends</span></div>
+    <div class="rail" data-i18n="rail.shipped"><b>Shipped</b><span>Nights and<br>weekends</span></div>
     <div class="body">
-      <h2>Things I built myself</h2>
-      <p style="color:var(--ink-2);margin-bottom:22px">I do not manage software from a distance. These are mine end to end — specified, written, deployed and maintained.</p>
-      <div class="repos">
-        <a class="repo" href="https://github.com/nilpost/nebra-rockpi-ttn-gateway">
-          <span class="rn">nebra-rockpi-ttn-gateway</span>
-          <span class="rd">Repurposing a decommissioned Helium miner — Rock Pi 4B and an SX1301 concentrator — into a standalone LoRaWAN gateway on The Things Network.</span>
-          <span class="rm">C · Hardware</span>
-        </a>
-        <a class="repo" href="https://github.com/nilpost/jobtrack">
-          <span class="rn">jobtrack</span>
-          <span class="rd">Local-first, self-hostable Kanban tracker for a job search. Zero-setup in the browser, with optional self-hosted sync.</span>
-          <span class="rm">TypeScript</span>
-        </a>
-        <a class="repo" href="https://github.com/nilpost/github-dashboard">
-          <span class="rn">github-dashboard</span>
-          <span class="rd">Repository dashboard for monitoring dependencies, tracking vulnerabilities, visualising architecture and aggregating logs.</span>
-          <span class="rm">TypeScript</span>
-        </a>
-        <a class="repo" href="https://github.com/nilpost/E-Companion">
-          <span class="rn">E-Companion</span>
-          <span class="rd">Deployed application running in production at companion.postiusgroup.com.</span>
-          <span class="rm">TypeScript · Live</span>
-        </a>
-        <a class="repo" href="https://github.com/nilpost/equis-nexus-website">
-          <span class="rn">equis-nexus-website</span>
-          <span class="rd">Multilingual website and investor portfolio, live at equis-nexus.com.</span>
-          <span class="rm">TypeScript · Live</span>
-        </a>
-        <a class="repo" href="https://github.com/nilpost/claude-code-studio">
-          <span class="rn">claude-code-studio</span>
-          <span class="rd">A published plugin marketplace of purpose-built AI agents — including the ten-agent system that researches roles, tailors application materials and drives the applications behind this job search.</span>
-          <span class="rm">Shell · Agent tooling</span>
-        </a>
-      </div>
+      <h2 data-i18n="ship.h">Things I built myself</h2>
+      <p class="sub" data-i18n="ship.intro">I do not manage software from a distance. These are mine end to end — specified, written, deployed and maintained. The two at the top are not demos: they run my own operations, and one of them sells real inventory.</p>
+      <div class="repos" data-i18n="ship.repos"><a class="repo" href="https://sells.postiusgroup.com"><span class="rn">sell-agent</span><span class="rd">An autonomous agent for the whole lifecycle of selling a used item — identify it from a photo, price it against the market, write the listing in Japanese and English, and draft buyer replies. Live across Jmty, Facebook Marketplace, Craigslist and Mercari, with a public storefront. Python, 316 tests.</span><span class="rm">Private repo · Live storefront</span></a><a class="repo" href="https://github.com/nilpost/claude-code-studio"><span class="rn">claude-code-studio</span><span class="rd">A published plugin marketplace of purpose-built AI agents — including the ten-agent system that researches roles, tailors application materials and drives the applications behind this job search.</span><span class="rm">Shell · Agent orchestration</span></a><a class="repo" href="https://github.com/nilpost/nebra-rockpi-ttn-gateway"><span class="rn">nebra-rockpi-ttn-gateway</span><span class="rd">Repurposing a decommissioned Helium miner — Rock Pi 4B and an SX1301 concentrator — into a standalone LoRaWAN gateway on The Things Network.</span><span class="rm">C · Hardware</span></a><a class="repo" href="https://github.com/nilpost/jobtrack"><span class="rn">jobtrack</span><span class="rd">Local-first, self-hostable Kanban tracker for a job search. Zero-setup in the browser, with optional self-hosted sync.</span><span class="rm">TypeScript</span></a><a class="repo" href="https://github.com/nilpost/github-dashboard"><span class="rn">github-dashboard</span><span class="rd">Repository dashboard for monitoring dependencies, tracking vulnerabilities, visualising architecture and aggregating logs.</span><span class="rm">TypeScript</span></a><a class="repo" href="https://github.com/nilpost/equis-nexus-website"><span class="rn">equis-nexus-website</span><span class="rd">Multilingual website and investor portfolio, live at equis-nexus.com.</span><span class="rm">TypeScript · Live</span></a></div>
     </div>
   </section>
 
-  <!-- ============ CONTACT ============ -->
   <section class="band" aria-label="Contact">
-    <div class="rail"><b>Contact</b><span>Direct</span></div>
+    <div class="rail" data-i18n="rail.contact"><b>Contact</b><span>Direct</span></div>
     <div class="body">
-      <h2>Let's talk</h2>
-      <p style="margin-bottom:26px">If you are hiring for a role that owns revenue and cost — in Japan or with a Japan mandate — I would like to hear about it. No sponsorship required, two weeks' notice.</p>
-      <div class="contact-grid">
-        <div>
-          <span class="lbl">Email</span>
-          <span class="val"><a href="mailto:npostius@gmail.com">npostius@gmail.com</a></span>
-        </div>
-        <div>
-          <span class="lbl">LinkedIn</span>
-          <span class="val"><a href="https://www.linkedin.com/in/NPostius">/in/NPostius</a></span>
-        </div>
-        <div>
-          <span class="lbl">GitHub</span>
-          <span class="val"><a href="https://github.com/nilpost">@nilpost</a></span>
-        </div>
-      </div>
+      <h2 data-i18n="con.h">Let's talk</h2>
+      <p class="sub" data-i18n="con.intro">If you are hiring for a role that owns revenue and cost — in Japan or with a Japan mandate — I would like to hear about it. No sponsorship required, two weeks' notice.</p>
+      <div class="contact-grid" data-i18n="con.grid"><div><span class="lbl">Email</span><span class="val"><a href="mailto:npostius@gmail.com">npostius@gmail.com</a></span></div><div><span class="lbl">LinkedIn</span><span class="val"><a href="https://www.linkedin.com/in/NPostius">/in/NPostius</a></span></div><div><span class="lbl">GitHub</span><span class="val"><a href="https://github.com/nilpost">@nilpost</a></span></div></div>
 
-      <div class="colophon">
-        <span>Nil Postius Echeverri</span>
-        <span>Tokyo, Japan</span>
-        <span>Permanent Resident · Andorran citizen</span>
-        <span>Available at two weeks' notice</span>
-      </div>
+      <div class="colophon" data-i18n="con.colophon"><span>Nil Postius Echeverri</span><span>Tokyo, Japan</span><span>Permanent Resident · Andorran citizen</span><span>Available at two weeks' notice</span></div>
     </div>
   </section>
 
 </div>
+
 <script src="app.js"></script>
 </body>
 </html>
