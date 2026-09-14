@@ -133,6 +133,7 @@ h1{
   letter-spacing:-.008em;
   margin:0 0 30px;
   max-width:34ch;
+  text-wrap:balance;
   animation:rise .5s .19s both ease-out;
 }
 .tagline em{font-style:normal;color:var(--accent)}
