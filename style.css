@@ -180,6 +180,15 @@ h1{
   letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);
 }
 
+/* The standard-of-evidence note under the figures. Quiet, but not fine print:
+   for the roles this page targets, the discipline is itself the point. */
+.ev-note{
+  font-size:14.5px;line-height:1.6;color:var(--ink-3);
+  max-width:74ch;margin:16px 0 0;padding-left:15px;
+  border-left:1px solid var(--rule);
+}
+:root[lang="ja"] .ev-note{line-height:1.8;font-size:13.5px}
+
 /* ---- proof records ---- */
 .record{padding:0 0 34px;margin-bottom:34px;border-bottom:1px dashed var(--rule)}
 .record:last-child{border-bottom:0;margin-bottom:0;padding-bottom:6px}
