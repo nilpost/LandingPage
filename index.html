@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<!-- English source of record. es.html and ja.html are GENERATED from this file
+     plus i18n.json — after editing anything here, run:  python3 build.py
+     (python3 build.py --check exits non-zero if they are stale). -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,6 +10,10 @@
 <meta name="description" content="Industrial operator in robotics, applied AI and oil &amp; gas. Built Yokogawa's global robotics business from business plan to first commercial orders; now delivering an AI control programme for a Gulf national oil operator and working buy-side on US manufacturing acquisitions. Tokyo, Permanent Resident.">
 <meta name="author" content="Nil Postius Echeverri">
 <link rel="canonical" href="https://nil.postiusgroup.com/">
+<link rel="alternate" hreflang="en" href="https://nil.postiusgroup.com/">
+<link rel="alternate" hreflang="es" href="https://nil.postiusgroup.com/es">
+<link rel="alternate" hreflang="ja" href="https://nil.postiusgroup.com/ja">
+<link rel="alternate" hreflang="x-default" href="https://nil.postiusgroup.com/">
 
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://nil.postiusgroup.com/">
@@ -31,7 +38,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
-<link rel="stylesheet" href="style.css?v=20260915c">
+<link rel="stylesheet" href="style.css?v=20260915e">
 
 <script>
   // Theme and language are applied before first paint so neither flashes.
@@ -41,14 +48,26 @@
       var t = localStorage.getItem('theme');
       if (t === 'dark' || t === 'light') d.setAttribute('data-theme', t);
     } catch (e) {}
+    // First visit only, and only from the root: send the reader to the page
+    // in their own language. /es and /ja never redirect, so no loop is possible.
     try {
-      var l = localStorage.getItem('lang');
-      if (!l) {
-        var nav = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
-        nav = nav.toLowerCase();
-        l = nav.indexOf('ja') === 0 ? 'ja' : nav.indexOf('es') === 0 ? 'es' : 'en';
+      var path = location.pathname;
+      if (path === '/' || path === '/index.html') {
+        var chosen = localStorage.getItem('lang');
+        if (!chosen) {
+          var list = navigator.languages && navigator.languages.length
+            ? navigator.languages : [navigator.language || 'en'];
+          for (var i = 0; i < list.length; i++) {
+            var tag = String(list[i]).toLowerCase();
+            if (tag.indexOf('ja') === 0) { location.replace('/ja'); return; }
+            if (tag.indexOf('es') === 0) { location.replace('/es'); return; }
+            if (tag.indexOf('en') === 0) break;
+          }
+        } else if (chosen === 'es' || chosen === 'ja') {
+          location.replace('/' + chosen);
+          return;
+        }
       }
-      if (l === 'ja' || l === 'es') d.setAttribute('data-lang-pending', l);
     } catch (e) {}
   }());
 </script>
@@ -80,11 +99,11 @@
 <body>
 
 <div class="controls">
-  <div class="lang-switch" role="group" aria-label="Language">
-    <button type="button" data-lang="en" lang="en">EN</button>
-    <button type="button" data-lang="es" lang="es">ES</button>
-    <button type="button" data-lang="ja" lang="ja">日本語</button>
-  </div>
+  <nav class="lang-switch" aria-label="Language">
+    <a href="/" class="is-active" aria-current="page" data-lang="en" lang="en" hreflang="en">EN</a>
+    <a href="/es" data-lang="es" lang="es" hreflang="es">ES</a>
+    <a href="/ja" data-lang="ja" lang="ja" hreflang="ja">日本語</a>
+  </nav>
   <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch colour theme">
     <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M4.2 12H2M22 12h-2.2M6.5 6.5 4.9 4.9M19.1 19.1l-1.6-1.6M17.5 6.5l1.6-1.6M4.9 19.1l1.6-1.6"/></svg>
     <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z"/></svg>
@@ -101,7 +120,7 @@
 
     <p class="lead" data-i18n="hero.lead">Ten years turning industrial technology into revenue. I wrote the business plan for <strong>Yokogawa's global robotics and drone business</strong> and carried it from a blank page to its first commercial orders; today I hold end-to-end delivery accountability for an AI control programme for a Gulf national oil operator, and I work buy-side on US manufacturing acquisitions. What I want next is a P&amp;L of my own.</p>
 
-    <div class="cta-row" data-i18n="hero.cta"><a class="cta" href="mailto:npostius@gmail.com">Start a conversation</a> <a class="cta cta--ghost" href="https://www.linkedin.com/in/NPostius">LinkedIn</a> <a class="cta cta--ghost" href="https://github.com/nilpost">GitHub</a></div>
+    <div class="cta-row" data-i18n="hero.cta"><a class="cta" href="mailto:npostius@gmail.com">Start a conversation</a> <a class="cta cta--ghost" href="https://www.linkedin.com/in/NPostius">LinkedIn</a> <a class="cta cta--ghost" href="https://github.com/nilpost">GitHub</a> <a class="cta cta--ghost" href="/Nil_Postius_Echeverri_CV.pdf" download>Download CV (PDF)</a></div>
   </header>
 
   <section class="band band--open" aria-label="Evidence">
@@ -176,7 +195,7 @@
     <div class="body">
       <h2 data-i18n="con.h">Let's talk</h2>
       <p class="sub" data-i18n="con.intro">If you are hiring for a role that owns revenue and cost — in Japan or with a Japan mandate — I would like to hear about it. No sponsorship required, two weeks' notice.</p>
-      <div class="contact-grid" data-i18n="con.grid"><div><span class="lbl">Email</span><span class="val"><a href="mailto:npostius@gmail.com">npostius@gmail.com</a></span></div><div><span class="lbl">LinkedIn</span><span class="val"><a href="https://www.linkedin.com/in/NPostius">/in/NPostius</a></span></div><div><span class="lbl">GitHub</span><span class="val"><a href="https://github.com/nilpost">@nilpost</a></span></div></div>
+      <div class="contact-grid" data-i18n="con.grid"><div><span class="lbl">Email</span><span class="val"><a href="mailto:npostius@gmail.com">npostius@gmail.com</a></span></div><div><span class="lbl">LinkedIn</span><span class="val"><a href="https://www.linkedin.com/in/NPostius">/in/NPostius</a></span></div><div><span class="lbl">GitHub</span><span class="val"><a href="https://github.com/nilpost">@nilpost</a></span></div><div><span class="lbl">CV</span><span class="val"><a href="/Nil_Postius_Echeverri_CV.pdf" download>PDF, 2 pages</a></span></div></div>
 
       <div class="colophon" data-i18n="con.colophon"><span>Nil Postius Echeverri</span><span>Tokyo, Japan</span><span>Permanent Resident · Andorran citizen</span><span>Available at two weeks' notice</span></div>
     </div>
@@ -184,6 +203,6 @@
 
 </div>
 
-<script src="app.js?v=20260915c"></script>
+<script src="app.js?v=20260915e"></script>
 </body>
 </html>

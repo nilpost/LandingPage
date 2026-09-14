@@ -31,9 +31,12 @@ jobs:
         run: |
           mkdir -p public
           cp "index.html" public/
+          cp "es.html" public/
+          cp "ja.html" public/
           cp "app.js" public/
           cp "style.css" public/
           cp "generated_image.png" public/
+          cp "Nil_Postius_Echeverri_CV.pdf" public/
 
       - name: Deploy to landing.postiusgroup.com
         uses: cloudflare/wrangler-action@v4

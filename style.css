@@ -270,7 +270,7 @@ h1{
 .repo .rm{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);display:block;margin-top:9px}
 
 /* ---- contact ---- */
-.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:6px}
+.contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:6px}
 .contact-grid .lbl{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:5px}
 .contact-grid .val{font-family:var(--f-display);font-size:16px;font-weight:500;word-break:break-word}
 .colophon{
@@ -306,15 +306,15 @@ h1{
   display:flex;align-items:center;gap:8px;
 }
 .lang-switch{display:flex;background:var(--paper);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
-.lang-switch button{
+.lang-switch a{text-decoration:none;border-bottom:0;display:block;
   font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;
   background:transparent;border:0;border-left:1px solid var(--rule-soft);
   color:var(--ink-3);padding:9px 10px;cursor:pointer;line-height:1;
   transition:color .15s,background .15s;
 }
-.lang-switch button:first-child{border-left:0}
-.lang-switch button:hover{color:var(--ink)}
-.lang-switch button.is-active{color:var(--accent);background:var(--accent-wash)}
+.lang-switch a:first-child{border-left:0}
+.lang-switch a:hover{color:var(--ink)}
+.lang-switch a.is-active{color:var(--accent);background:var(--accent-wash)}
 .theme-toggle{
   width:36px;height:36px;display:grid;place-items:center;
   background:var(--paper);border:1px solid var(--rule);border-radius:2px;
@@ -331,11 +331,6 @@ h1{
   :root:not([data-theme="light"]) .theme-toggle .sun{display:none}
 }
 
-/* Hide the English source only while a translation is about to be applied.
-   The delayed animation is the failsafe: if app.js never runs, the page
-   still reveals itself rather than staying blank. */
-:root[data-lang-pending] .sheet{visibility:hidden;animation:reveal 0s 1.2s forwards}
-@keyframes reveal{to{visibility:visible}}
 
 /* ---- utility classes replacing former inline styles ---- */
 .sub{color:var(--ink-2);margin-bottom:28px}
@@ -379,7 +374,7 @@ h3.spaced{margin-top:26px}
 }
 @media (max-width:720px){
   .controls{top:9px;right:9px;gap:6px}
-  .lang-switch button{padding:8px 8px;font-size:10.5px}
+  .lang-switch a{padding:8px 8px;font-size:10.5px}
   .theme-toggle{width:32px;height:32px}
   .masthead{padding-top:62px}
 }
