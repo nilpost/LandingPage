@@ -129,9 +129,24 @@
   EN['meta.desc'] = descEl ? descEl.getAttribute('content') : '';
   EN['ui.theme'] = 'Switch colour theme';
 
+  /* The Japanese faces are ~500KB of @font-face declarations across their
+     unicode subsets, so they are fetched only if Japanese is actually shown.
+     Until they arrive the CSS falls back to Hiragino / Yu Gothic. */
+  var jpFonts = false;
+  function ensureJapaneseFonts() {
+    if (jpFonts) return;
+    jpFonts = true;
+    var l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700' +
+             '&family=Noto+Serif+JP:wght@300;400;500&display=swap';
+    document.head.appendChild(l);
+  }
+
   function apply(lang) {
     var dict = lang === 'en' ? EN : I18N[lang];
     if (!dict) return;
+    if (lang === 'ja') ensureJapaneseFonts();
     Array.prototype.forEach.call(nodes(), function (el) {
       var k = el.getAttribute('data-i18n');
       var v = dict[k] !== undefined ? dict[k] : EN[k];
